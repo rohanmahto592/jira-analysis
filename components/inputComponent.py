@@ -1,7 +1,5 @@
 import streamlit as st
-import sys
-sys.path.append('../')
-from utils.processFile import process_prd,process_tickets
+from ..processFile import process_prd,process_tickets,splitAndFormatDocFile
 class InputComponent:
 
     def __init__(self) -> None:
@@ -14,8 +12,10 @@ class InputComponent:
 
         if submit_prd and prd_file is not None:
             with st.spinner('Analysing PRD...'):
-                doc=process_prd(upload_file=prd_file) 
-                st.write(doc)
+               result =process_prd(upload_file=prd_file)
+               
+                   
+                
             st.success('PRD analysis completed!')
 
             with st.form("tickets_form", clear_on_submit=False):
